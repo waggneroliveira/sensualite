@@ -24,9 +24,9 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => 'Developer',
-            'email' => 'developer@hoom.com.br',
-            'password' => Hash::make('@Hoomdeveloper'),
+            'name' => 'Super Usuário',
+            'email' => 'waggner.dev@gmail.com',
+            'password' => Hash::make('W@gn3R13041994dev'),
             'active' => 1,
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
