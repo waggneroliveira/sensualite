@@ -46,13 +46,24 @@ class HomePageController extends Controller
         $clientId = Auth::guard('cliente')->id();
 
         if (!$clientId) {
+            if ($request->ajax() || $request->wantsJson()) {
+                return response()->json([
+                    'error' => 'Faça o login para poder curtir a foto.',
+                    'showLoginModal' => true
+                ], 401);
+            }
             return redirect()->back()
                 ->with('error', 'Faça o login para poder curtir a foto.')
                 ->with('showLoginModal', true);
         }
 
-        $this->likedService->toggleLike($companionId, $clientId);// Chama o serviço para alternar o like
+        $liked = $this->likedService->toggleLike($companionId, $clientId);
+        $likedCount = Liked::where('companion_id', $companionId)->count();
 
-        return redirect()->back();
+        return response()->json([
+            'liked' => $liked,
+            'likedCount' => $likedCount,
+            'companionId' => $companionId
+        ]);
     }
 }
