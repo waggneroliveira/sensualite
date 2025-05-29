@@ -63,7 +63,7 @@ class HomePageController extends Controller
         $likedByMe = Liked::where('companion_id', $companionId)
             ->where('client_id', $clientId)
             ->exists();
-
+   
         return response()->json([
             'liked' => $liked,
             'likedCount' => $likedCount,

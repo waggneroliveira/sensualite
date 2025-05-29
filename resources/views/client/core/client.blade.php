@@ -905,12 +905,22 @@
                                 if (typeof data.liked !== 'undefined' && typeof data.likedCount !== 'undefined') {
                                     // Atualiza apenas o <h3> do contador, mantendo o SVG
                                     const count = button.querySelector('.section-three__box__item__like__title');
+                                    // Atualiza todos os elementos de contagem de curtidas relacionados ao companion
+                                    const allCountLikePost = document.querySelectorAll('.count-like-post');
                                     if (count) {
                                         count.textContent = data.likedCount > 0 ? data.likedCount : '';
                                     }
+                                    if (allCountLikePost.length > 0) {
+                                        allCountLikePost.forEach(el => {
+                                            // Atualiza se o elemento for do mesmo companionId OU se só houver um .count-like-post na página
+                                            if ((el.closest('[data-id]') && el.closest('[data-id]').dataset.id == id) || allCountLikePost.length === 1) {
+                                                el.textContent = data.likedCount > 0 ? data.likedCount : '';
+                                            }
+                                        });
+                                    }
                                     // Atualiza o SVG do coração
                                     let svg = '';
-                                    if (data.likedCount > 0) {
+                                    if (data.likedCount > 0 && data.likedByMe === true) {
                                         svg = `<svg width="57" height="53" viewBox="0 0 57 53" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M28.2613 0.883195C29.1766 4.27952 31.497 6.30197 33.8107 8.29652C37.5839 11.5499 41.6872 14.3778 45.3959 17.7149C49.1249 21.0728 52.5988 24.6784 54.5177 29.473C56.7395 35.0242 57.0491 40.5511 53.6365 45.806C48.0089 54.4677 35.5663 54.9628 29.2685 46.7963C28.9588 46.3953 28.6628 45.9908 28.3022 45.5096C27.5707 46.4127 26.9548 47.3403 26.1587 48.1109C21.6266 52.501 16.3121 53.8051 10.4735 51.7164C4.618 49.6242 1.21559 45.1679 0.446645 38.8495C-0.220227 33.354 1.76678 28.5977 4.95824 24.3087C8.01701 20.1941 11.8992 16.9652 15.8596 13.8269C18.442 11.78 21.1027 9.83428 23.549 7.61307C25.5496 5.79635 27.4856 3.9099 28.2681 0.876221L28.2613 0.883195ZM28.2205 36.4644C28.7207 37.9149 29.2548 39.1145 29.9932 40.2024C32.6675 44.1392 36.0903 46.6289 41.034 46.2453C45.6238 45.8897 48.8595 42.9432 49.6829 38.3125C50.2273 35.2439 49.557 32.4195 48.0565 29.7659C46.1512 26.394 43.3987 23.8275 40.459 21.4424C36.5428 18.2693 32.2217 15.6366 28.5846 12.0973C28.2137 11.7382 28.0402 11.9334 27.7816 12.188C26.6758 13.2794 25.4714 14.2453 24.2567 15.2077C20.8305 17.9171 17.1423 20.2673 13.8964 23.2208C11.0554 25.8047 8.51716 28.6187 7.21404 32.3811C5.68976 36.7852 6.8738 41.5693 10.1061 44.0834C13.8181 46.9706 18.806 47.0613 22.5759 44.2508C25.172 42.3155 27.0433 39.7909 28.2205 36.4574V36.4644Z" fill="#F14C90"/>
                                                 <path d="M9.96939 21.1954L28.7646 9.00391C32.6591 11.7131 40.7528 17.3347 41.972 18.1475C43.4959 19.1635 48.5757 24.7512 49.5917 25.7672C50.6076 26.7831 52.6395 34.4028 52.6395 35.9267V42.0225L41.972 48.1182H37.9082L27.7486 42.0225L25.7167 45.5783L8.95343 48.1182L3.87366 42.0225C3.87366 39.4826 4.17844 33.8948 5.39759 31.8629C6.61674 29.831 8.95343 23.9046 9.96939 21.1954Z" fill="#F14C90"/>
