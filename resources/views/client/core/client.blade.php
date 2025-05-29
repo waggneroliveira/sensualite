@@ -166,8 +166,8 @@
                     </a>
                 </div>
                 <div class="header__navigation__buttom">
-                    <a class="header__navigation__buttom__cta" href="{{ route('client.about') }}">
-                        <img src="{{asset('build/client/images/annouciment.png')}}" alt="login">
+                    <a class="header__navigation__buttom__cta" href="{{ route('client.about') }}">                        
+                        <img class="announciment" src="{{asset('build/client/images/annouciment.svg')}}" alt="login">
                         Quero anunciar!
                     </a>
                 </div>

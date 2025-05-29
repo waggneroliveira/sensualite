@@ -3384,7 +3384,12 @@ body, h1, h2, h3, h4, h5, p, ul, li {
                 transition: all ease 0.3s;
 
                 &:hover {
-                    background-color: transparent;
+                    background: linear-gradient(180deg, #F9E4B7 0%, #E6C27A 50%, #C6A14D 75%, #8C6C3A 87.5%, #F9E4B7 100%);
+                    color: #390B0F;
+                    border-color: transparent;
+                    .announciment path  {
+                        fill: #390B0F !important;
+                    }
                 }
             }
         }
