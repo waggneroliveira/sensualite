@@ -165,6 +165,12 @@
                         <h3 class="header__genero__dir__title">Perfil Acompanhante</h3>
                     </a>
                 </div>
+                <div class="header__navigation__buttom">
+                    <a class="header__navigation__buttom__cta" href="{{ route('client.about') }}">
+                        <img src="{{asset('build/client/images/annouciment.png')}}" alt="login">
+                        Quero anunciar!
+                    </a>
+                </div>
             </div>
 
             <script>
@@ -409,10 +415,7 @@
                                 </div> -->
                             </div>
                         </div>
-                    </div>
-                    <div class="header__navigation__buttom">
-                        <a class="header__navigation__buttom__cta" href="{{ route('client.about') }}">Anuncie Aqui</a>
-                    </div>
+                    </div>                    
                 </nav>
             </header>
             @yield('content')
