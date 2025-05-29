@@ -59,10 +59,15 @@ class HomePageController extends Controller
 
         $liked = $this->likedService->toggleLike($companionId, $clientId);
         $likedCount = Liked::where('companion_id', $companionId)->count();
+        // Verifica se o usuário logado curtiu após a ação
+        $likedByMe = Liked::where('companion_id', $companionId)
+            ->where('client_id', $clientId)
+            ->exists();
 
         return response()->json([
             'liked' => $liked,
             'likedCount' => $likedCount,
+            'likedByMe' => $likedByMe,
             'companionId' => $companionId
         ]);
     }
