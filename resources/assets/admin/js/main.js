@@ -1817,6 +1817,7 @@ document.addEventListener('DOMContentLoaded', function () {
 const fileInputPreview = document.querySelectorAll('.fileInputPreview');
 
 fileInputPreview.forEach(function (fileInputPreviewI) {
+    // Seleciona o input de arquivo pelo seletor .fileInput (agora ids/names únicos)
     const fileInput = fileInputPreviewI.querySelector('.fileInput');
     const previewFileImg = fileInputPreviewI.querySelector('.preview-file-img');
     const labelInput = fileInputPreviewI.querySelector('.labelInput');
@@ -1834,8 +1835,6 @@ fileInputPreview.forEach(function (fileInputPreviewI) {
             fileInputPreviewI.parentNode.appendChild(previewFiles);
         }
 
-        var imgPreview = '';
-
         files.forEach(file => {
             const fileType = file.type;
 
@@ -1844,35 +1843,27 @@ fileInputPreview.forEach(function (fileInputPreviewI) {
 
                 reader.onload = function (e) {
                     if (files.length > 1) {
-
                         const img = document.createElement('img');
                         img.src = e.target.result;
                         img.style.width = '100px';
                         img.style.height = '100px';
                         img.style.margin = '5px';
                         img.style.objectFit = 'contain';
-
                         const pereviewFilesInner = fileInputPreviewI.parentNode.querySelector('.previewFiles');
                         pereviewFilesInner.appendChild(img);
-
                     } else {
-
                         previewFileImg.src = e.target.result;
                         previewFileImg.style.display = 'block';
-
                     }
                 }
 
                 if (files.length <= 1) {
-
                     labelInput.classList.add('preview');
                     removeFile.style.display = 'block';
-
                 }
 
                 reader.readAsDataURL(file);
             } else {
-
                 if (files.length > 1) {
                     const img = document.createElement('img');
                     img.src = $url + '/build/admin/images/file-icon-default.png';
@@ -1880,17 +1871,14 @@ fileInputPreview.forEach(function (fileInputPreviewI) {
                     img.style.height = '100px';
                     img.style.margin = '5px';
                     img.style.objectFit = 'contain';
-
                     const pereviewFilesInner = fileInputPreviewI.parentNode.querySelector('.previewFiles');
                     pereviewFilesInner.appendChild(img);
-
                 } else {
                     previewFileImg.src = $url + '/build/admin/images/file-icon-default.png';
                     previewFileImg.style.display = 'block';
                     labelInput.classList.add('preview');
                     removeFile.style.display = 'block';
                 }
-
             }
         });
     });

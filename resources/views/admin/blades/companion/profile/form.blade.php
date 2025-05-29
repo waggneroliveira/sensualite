@@ -187,14 +187,14 @@
             <label class="form-label mb-2">Imagem Perfil</label>
             <div class="fileInputPreview">
                 <img class="preview-file-img" src="{{isset($companion)?$companion->path_file_profile<>''?url('storage/'.$companion->path_file_profile):'':''}}" alt="Pré-visualização">
-                <label for="fileInput" class="labelInput">
+                <label for="fileInputProfile" class="labelInput">
                     <i class="bx bx-upload"></i>
                     <h5 class="fileText">Clique para fazer upload</h5>
                     <p class="fileDescription">Carregar imagem com no máximo de 2mb</p>
                 </label>
                 <button class="btn btn-secondary removeFile">Remover</button>
                 <div class="wrap-input">
-                    <input type="file" id="fileInput" name="path_file_profile" class="fileInput">
+                    <input type="file" id="fileInputProfile" name="path_file_profile" class="fileInput">
                 </div>
             </div>
         </div>
@@ -203,14 +203,14 @@
             <label class="form-label mb-2">Imagem de Capa <small>(Horizontal)</small></label>
             <div class="fileInputPreview">
                 <img class="preview-file-img" src="{{isset($companion)?$companion->path_file_horizontal_cover<>''?url('storage/'.$companion->path_file_horizontal_cover):'':''}}" alt="Pré-visualização">
-                <label for="fileInput" class="labelInput">
+                <label for="fileInputHorizontal" class="labelInput">
                     <i class="bx bx-upload"></i>
                     <h5 class="fileText">Clique para fazer upload</h5>
                     <p class="fileDescription">Carregar imagem com no máximo de 2mb</p>
                 </label>
                 <button class="btn btn-secondary removeFile">Remover</button>
                 <div class="wrap-input">
-                    <input type="file" id="fileInput" name="path_file_profile" class="fileInput">
+                    <input type="file" id="fileInputHorizontal" name="path_file_horizontal_cover" class="fileInput">
                 </div>
             </div>
         </div>
@@ -219,14 +219,14 @@
             <label class="form-label mb-2">Imagem de Capa <small>(Vertical)</small></label>
             <div class="fileInputPreview">
                 <img class="preview-file-img" src="{{isset($companion)?$companion->path_file_vertical_cover<>''?url('storage/'.$companion->path_file_vertical_cover):'':''}}" alt="Pré-visualização">
-                <label for="fileInput" class="labelInput">
+                <label for="fileInputVertical" class="labelInput">
                     <i class="bx bx-upload"></i>
                     <h5 class="fileText">Clique para fazer upload</h5>
                     <p class="fileDescription">Carregar imagem com no máximo de 2mb</p>
                 </label>
                 <button class="btn btn-secondary removeFile">Remover</button>
                 <div class="wrap-input">
-                    <input type="file" id="fileInput" name="path_file_profile" class="fileInput">
+                    <input type="file" id="fileInputVertical" name="path_file_vertical_cover" class="fileInput">
                 </div>
             </div>
         </div>
