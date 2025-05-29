@@ -50,7 +50,9 @@
                             @method('post')
                             <input type="hidden" name="companionId" value="{{ $companion->id }}">
                             
-                            <button type="submit" class="liked-companion">
+                            <button type="submit" class="liked-companion"
+                                data-id="{{ $companion->id }}"
+                                data-liked="{{ isset($likedByClient[$companion->id]) && $likedByClient[$companion->id] ? '1' : '0' }}">
                             <!-- Verificação do estado do coração (curtido ou não) -->
                             @if (isset($likedByClient[$companion->id]) && $likedByClient[$companion->id]) 
                                 <svg width="57" height="53" viewBox="0 0 57 53" fill="none" xmlns="http://www.w3.org/2000/svg">
