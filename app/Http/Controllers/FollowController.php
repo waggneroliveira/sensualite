@@ -54,42 +54,48 @@ class FollowController extends Controller
     }
 
     public function togglePostLiked(Request $request, $postId)
-    {   
-        $clientId = null;
-
-        if (Auth::guard('cliente')->check()) {
-            $clientId = Auth::guard('cliente')->user()->id;
-        } else {
+    {
+        if (!Auth::guard('cliente')->check()) {
+            if ($request->ajax() || $request->wantsJson()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Faça o login para poder curtir a foto.',
+                    'showLoginModal' => true,
+                ], 401);
+            }
             return redirect()->back()
                 ->with('error', 'Faça o login para poder curtir a foto.')
-                ->with('showLoginModal', true); 
+                ->with('showLoginModal', true);
         }
-        
-        // Verifica se já existe a curtida
-        $liked = LikedPost::join('posts','liked_posts.post_id','posts.id')
-        ->select(
-            'posts.id as postId',
-            'posts.companion_id as postCompanionId',
-            'liked_posts.id',
-            'liked_posts.post_id',
-            'liked_posts.client_id',
-        )
-        ->where('posts.id', $postId)
-        ->where('client_id', $clientId)
-        ->first();
 
+        $clientId = Auth::guard('cliente')->user()->id;
+
+        // Verifica se já existe a curtida
+        $liked = LikedPost::where('post_id', $postId)
+            ->where('client_id', $clientId)
+            ->first();
 
         if ($liked) {
-            $liked->delete(); // Remove a curtida
-            return redirect()->back();
+            $liked->delete();
+            $likedNow = false;
         } else {
             LikedPost::create([
                 'post_id' => $postId,
                 'client_id' => $clientId,
             ]);
-            return redirect()->back();
+            $likedNow = true;
         }
-        
+        $count = LikedPost::where('post_id', $postId)->count();
+
+        if ($request->ajax() || $request->wantsJson()) {
+            return response()->json([
+                'success' => true,
+                'liked' => $likedNow,
+                'count' => $count,
+            ]);
+        }
+        // Para requisição normal, apenas redireciona de volta
         return redirect()->back();
     }
+
 }
