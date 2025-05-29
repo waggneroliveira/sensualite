@@ -915,7 +915,7 @@
                                         allCountLikePost.forEach(el => {
                                             // Atualiza se o elemento for do mesmo companionId OU se só houver um .count-like-post na página
                                             if ((el.closest('[data-id]') && el.closest('[data-id]').dataset.id == id) || allCountLikePost.length === 1) {
-                                                el.textContent = data.likedCount > 0 ? data.likedCount : '';
+                                                el.textContent = data.likedCount > 0 ? data.likedCount : '0';
                                             }
                                         });
                                     }

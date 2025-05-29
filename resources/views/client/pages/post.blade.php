@@ -24,7 +24,7 @@
                                 <h4 class="section-post__box__left__head__information__additional__item__subtitle">Seguidores</h4>
                             </div>
                             <div class="section-post__box__left__head__information__additional__item">
-                                <h3 class="section-post__box__left__head__information__additional__item__title count-like-post">{{ isset($likeds[$companion->id]) ? $likeds[$companion->id]: '' }}</h3>
+                                <h3 class="section-post__box__left__head__information__additional__item__title count-like-post">{{ isset($likeds[$companion->id]) ? $likeds[$companion->id]: '0' }}</h3>
                                 <h4 class="section-post__box__left__head__information__additional__item__subtitle">Curtidas</h4>
                             </div>
                             <div class="section-post__box__left__head__information__additional__item">
