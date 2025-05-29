@@ -284,7 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Atualiza apenas o <h3> do contador, mantendo o SVG
                     const count = button.querySelector('.section-three__box__item__like__title');
                     if (count) {
-                        count.textContent = data.likedCount;
+                        count.textContent = data.likedCount > 0 ? data.likedCount : '';
                     }
                     // Atualiza o SVG do coração
                     let svg = '';
