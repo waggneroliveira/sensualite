@@ -16,6 +16,12 @@ class FollowController extends Controller
         if (Auth::guard('cliente')->check()) {
             $clientId = Auth::guard('cliente')->user()->id;
         } else {
+            if ($request->ajax() || $request->wantsJson()) {
+                return response()->json([
+                    'error' => 'Faça o login para poder seguir a acompanhante.',
+                    'showLoginModal' => true
+                ], 401);
+            }
             return redirect()->back()
                 ->with('error', 'Faça o login para poder seguir a acompanhante.')
                 ->with('showLoginModal', true); 
@@ -28,15 +34,22 @@ class FollowController extends Controller
 
         if ($follow) {
             $follow->delete(); // Remove a seguida
-            return redirect()->back();
+            $followed = false;
         } else {
             Follow::create([
                 'companion_id' => $companionId,
                 'client_id' => $clientId,
             ]);
-            return redirect()->back();
+            $followed = true;
         }
-        
+        $followersCount = Follow::where('companion_id', $companionId)->count();
+
+        if ($request->ajax() || $request->wantsJson()) {
+            return response()->json([
+                'followed' => $followed,
+                'followersCount' => $followersCount
+            ]);
+        }
         return redirect()->back();
     }
 

@@ -20,7 +20,7 @@
                         </div>
                         <div class="section-post__box__left__head__information__additional">
                             <div class="section-post__box__left__head__information__additional__item">
-                                <h3 class="section-post__box__left__head__information__additional__item__title">{{ isset($follows[$companion->id]) ? $follows[$companion->id]->count() : '' }}</h3>
+                                <h3 class="section-post__box__left__head__information__additional__item__title">{{ isset($follows[$companion->id]) ? $follows[$companion->id]->count() : '0' }}</h3>
                                 <h4 class="section-post__box__left__head__information__additional__item__subtitle">Seguidores</h4>
                             </div>
                             <div class="section-post__box__left__head__information__additional__item">

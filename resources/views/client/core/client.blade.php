@@ -879,6 +879,7 @@
                 </div>
             @endif
             <script>
+                // Script para lidar com o botão de curtida
                 document.addEventListener('DOMContentLoaded', () => {
                     document.querySelectorAll('.liked-companion').forEach(button => {
                         button.addEventListener('click', function (e) {
@@ -941,6 +942,52 @@
                             })
                             .catch(error => {
                                 console.error('Erro ao processar o like:', error);
+                            });
+                        });
+                    });
+
+                    //Mecanismo de seguir/desseguir
+                    document.querySelectorAll('.follow-companion').forEach(button => {
+                        button.addEventListener('click', function (e) {
+                            e.preventDefault();
+                            const form = button.closest('form');
+                            const id = form.querySelector('input[name="companionId"]').value;
+                            const token = document.querySelector('meta[name="csrf-token"]').content;
+                            const url = form.action;
+                            const isFollowing = button.textContent.trim() === 'Seguindo';
+
+                            // Atualiza visual imediatamente
+                            button.textContent = isFollowing ? 'Seguir' : 'Seguindo';
+                            button.classList.toggle('seguindo', !isFollowing);
+
+                            // Envia AJAX
+                            const formData = new FormData();
+                            formData.append('_token', token);
+                            formData.append('companionId', id);
+
+                            fetch(url, {
+                                method: 'POST',
+                                headers: {
+                                    'Accept': 'application/json',
+                                },
+                                body: formData
+                            })
+                            .then(response => {
+                                if (!response.ok) throw new Error('Erro ao seguir');
+                                return response.json ? response.json() : response;
+                            })
+                            .then(data => {
+                                // Opcional: atualizar contador de seguidores se backend retornar
+                                if (typeof data.followersCount !== 'undefined') {
+                                    const count = document.querySelector('.section-post__box__left__head__information__additional__item h3');
+                                    if (count) count.textContent = data.followersCount > 0 ? data.followersCount : '0';
+                                }
+                            })
+                            .catch(() => {
+                                // Reverte visual em caso de erro
+                                button.textContent = isFollowing ? 'Seguindo' : 'Seguir';
+                                button.classList.toggle('seguindo', isFollowing);
+                                alert('Erro ao seguir/desseguir. Tente novamente.');
                             });
                         });
                     });
