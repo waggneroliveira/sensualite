@@ -251,7 +251,7 @@
             <header class="header">
                 <div class="header__logo">
                     <a href="{{ route('client.home') }}">
-                        <img src="{{asset('build/client/images/logo-header.png')}}" alt="">
+                        <img src="{{asset('build/client/images/logo.png')}}" alt="">
                     </a>
                 </div>
 
@@ -263,7 +263,7 @@
                 <nav class="header__navigation" id="mobileMenu">
                     <div class="logo-mobile">
                         <a href="{{ route('client.home') }}">
-                            <img src="{{asset('build/client/images/logo-header.png')}}" alt="">
+                            <img src="{{asset('build/client/images/logo.png')}}" alt="">
                         </a>
                     </div>
 
@@ -340,7 +340,7 @@
                         <div class="box-login" id="login-modal">
                             <div class="modal-content">
                                 <span class="close-btn" id="close-modal">&times;</span>
-                                <img src="{{asset('build/client/images/logo-header.png')}}" alt="">
+                                <img src="{{asset('build/client/images/logo.png')}}" alt="">
                                 <h2>Acesse sua Conta</h2>
                                 <p>Acesso para Clientes</p>
                                 <form action="{{route('admin.client.authenticate')}}" method="POST">
@@ -381,7 +381,7 @@
                         <div class="box-login" id="cadastro-modal">
                             <div class="modal-content">
                                 <span class="close-btn" id="close-modal-cadastro">&times;</span>
-                                <img src="{{asset('build/client/images/logo-header.png')}}" alt="">
+                                <img src="{{asset('build/client/images/logo.png')}}" alt="">
                                 <h2>Criar uma nova conta</h2>
                                 <p>cadastro</p>
                                 <form action="{{route('client.register-client.store')}}" method="POST">
@@ -550,7 +550,7 @@
         </style>
 
         <div id="lightbox-feed" class="lightbox-feed" style="display: none;">
-            <img src="{{asset('build/client/images/logo-header.png')}}" class="lightbox-feed__logo" alt="">
+            <img src="{{asset('build/client/images/logo.png')}}" class="lightbox-feed__logo" alt="">
             <img src="{{asset('build/client/images/lightbox-escorts.png')}}" class="lightbox-feed__firula" alt="">
 
             <div class="lightbox-info">
